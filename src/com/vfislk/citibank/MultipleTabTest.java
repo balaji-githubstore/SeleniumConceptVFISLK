@@ -17,7 +17,12 @@ public class MultipleTabTest {
 		
 		driver.get("https://www.online.citibank.co.in/");
 		
-		driver.findElement(By.xpath("//img[@class='appClose']")).click();
+		if(driver.findElements(By.xpath("//img[@class='appClose']")).size()>0)
+		{
+			driver.findElement(By.xpath("//img[@class='appClose']")).click();
+		}
+		
+		
 		
 		driver.findElement(By.linkText("APPLY FOR CREDIT CARDS")).click();
 		

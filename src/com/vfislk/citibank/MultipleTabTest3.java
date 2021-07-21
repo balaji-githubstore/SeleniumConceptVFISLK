@@ -6,10 +6,18 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class MultipleTabTest3 {
+	
+	public static Actions createActionsInstance(WebDriver driver)
+	{
+		Actions action=new Actions(driver);	
+		return action;
+	}
 
 	public static void main(String[] args) throws InterruptedException {
 		WebDriver driver=new ChromeDriver();	
@@ -28,7 +36,18 @@ public class MultipleTabTest3 {
 		
 		driver.findElement(By.linkText("Travel")).click();
 		
-		driver.findElement(By.id("Email_Id")).sendKeys("john@gmail.com");
+		
+		WebElement ele=driver.findElement(By.id("Email_Id"));
+		System.out.println(ele);
+		ele.sendKeys("john@gmail.com");
+		
+		
+//		Actions act=MultipleTabTest3.createActionsInstance(driver);
+//		act.click();
+//		MultipleTabTest3.createActionsInstance(driver).click();
+		
+//		System.out.println(action);
+//		action.click();
 		
 		driver.findElement(By.id("mobile_number")).sendKeys("9898898898");
 		
