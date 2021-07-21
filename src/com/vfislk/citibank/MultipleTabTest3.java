@@ -1,5 +1,6 @@
 package com.vfislk.citibank;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -8,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class MultipleTabTest {
+public class MultipleTabTest3 {
 
 	public static void main(String[] args) throws InterruptedException {
 		WebDriver driver=new ChromeDriver();	
@@ -20,45 +21,28 @@ public class MultipleTabTest {
 		driver.findElement(By.xpath("//img[@class='appClose']")).click();
 		
 		driver.findElement(By.linkText("APPLY FOR CREDIT CARDS")).click();
-		
-		System.out.println(driver.getTitle());
-		
-		String parent = driver.getWindowHandle();
-		System.out.println(parent);
-		System.out.println("--------------------------------");
-		
-		Set<String> windows= driver.getWindowHandles();
-		
-		for(String win : windows)
-		{
-			System.out.println(win);
-			driver.switchTo().window(win);
-			System.out.println(driver.getTitle());
-			System.out.println("----------");
-		}
-		
-		
+
+		//convert set<String> to ArrayList<String> and then switchto index 1
+		ArrayList<String> windows =new ArrayList<String>(driver.getWindowHandles());	
+		driver.switchTo().window(windows.get(1));
 		
 		driver.findElement(By.linkText("Travel")).click();
 		
-		//enter john@gmail.com
 		driver.findElement(By.id("Email_Id")).sendKeys("john@gmail.com");
 		
-		//enter phone number as 9898898898
 		driver.findElement(By.id("mobile_number")).sendKeys("9898898898");
 		
-		//select Mx
 		Select select=new Select(driver.findElement(By.id("Title")));
 		select.selectByVisibleText("Mx.");
 		
-		//name as john d
 		driver.findElement(By.id("FirstName")).sendKeys("john d");
-		
-		//Do you have a Citibank Savings Account?  --> click yes
 		
 		driver.findElement(By.xpath("//input[@id='existcust' and @value='Yes']")).click();
 		driver.close();
 
+		driver.switchTo().window(windows.get(0));
+		System.out.println(driver.getTitle());
+		
 	}
 
 }
