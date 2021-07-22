@@ -16,23 +16,42 @@ public class WebTableTest {
 		
 		driver.get("https://datatables.net/extensions/select/examples/initialisation/checkbox.html");
 
-		int rowCount=driver.findElements(By.xpath("//table[@id='example']/tbody/tr")).size();
-		System.out.println(rowCount);
+		boolean pageCheck=false;
 		
-		
-		for(int i=1;i<=rowCount;i++)
+		for(int p=1;p<=6;p++)
 		{
-			String name=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[2]")).getText();
-			System.out.println(name);	
+			int rowCount=driver.findElements(By.xpath("//table[@id='example']/tbody/tr")).size();
+			System.out.println(rowCount);
 			
-			if(name.equals("Brenden Wagner"))
+			for(int i=1;i<=rowCount;i++)
 			{
-				driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[1]")).click();
-				String sal=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[6]")).getText();
-				System.out.println(sal);	
+				String name=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[2]")).getText();
+				System.out.println(name);	
+				
+				if(name.equals("Michael Silva123"))
+				{
+					driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[1]")).click();
+					String sal=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[6]")).getText();
+					System.out.println(sal);
+					pageCheck=true;
+					break;
+				}
+			}
+			
+			if(pageCheck)
+			{
 				break;
 			}
+			if(driver.findElement(By.linkText("Next")).isEnabled())
+			{
+				driver.findElement(By.linkText("Next")).click();
+			}
+			
+			
 		}
+		
+		
+		
 	}
 }
 
