@@ -30,14 +30,24 @@ public class WebElements {
 		int linkCount=elements.size();
 		System.out.println(linkCount);
 		
+		for(int i=0;i<linkCount;i++)
+		{
+			WebElement ele = elements.get(i);
+			
+			String href = ele.getAttribute("href");
+			String text=ele.getText();	
+			System.out.println(href);
+			System.out.println(text);
+		}
 		
-		
-		WebElement ele0 = elements.get(24);
-		
-		String href = ele0.getAttribute("href");
-		String text=ele0.getText();	
-		System.out.println(href);
-		System.out.println(text);
+		for(WebElement ele : elements)
+		{
+			String href = ele.getAttribute("href");
+			String text=ele.getText();	
+			System.out.println(href);
+			System.out.println(text);
+		}
+	
 		
 		
 	}
