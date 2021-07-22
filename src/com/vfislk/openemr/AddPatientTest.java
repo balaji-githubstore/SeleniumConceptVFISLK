@@ -2,17 +2,15 @@ package com.vfislk.openemr;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-
+	
+	
 
 public class AddPatientTest {
 
@@ -49,9 +47,9 @@ public class AddPatientTest {
 		
 		driver.switchTo().frame("pat");
 		
-		driver.findElement(By.id("form_fname")).sendKeys("Balaji");
+		driver.findElement(By.id("form_fname")).sendKeys("Sat");
 		driver.findElement(By.id("form_lname")).sendKeys("Dinakaran");	
-		driver.findElement(By.id("form_DOB")).sendKeys("2021-07-22");		
+		driver.findElement(By.id("form_DOB")).sendKeys("2021-07-20");		
 		Select selectGender=new Select(driver.findElement(By.id("form_sex")));
 		selectGender.selectByVisibleText("Male");
 		driver.findElement(By.id("create")).click();
@@ -68,13 +66,32 @@ public class AddPatientTest {
 		WebDriverWait wait =new WebDriverWait(driver,50);
 		wait.until(ExpectedConditions.alertIsPresent());
 		
-		Alert alert= driver.switchTo().alert();
-		String actualAlertText=alert.getText();
+		String actualAlertText=driver.switchTo().alert().getText();
 		System.out.println(actualAlertText);
 		
-		alert.accept();
+		driver.switchTo().alert().accept();
+		
+		//check for presence of element
+		if(driver.findElements(By.xpath("//div[@data-dismiss='modal']")).size()>0)
+		{
+			driver.findElement(By.xpath("//div[@data-dismiss='modal']")).click();
+		}
+		
+		driver.switchTo().frame("pat");
+		
+		String actualValue = driver.findElement(By.xpath("//h2[contains(text(),'Medical')]")).getText();
+		System.out.println(actualValue);
+		
+		driver.switchTo().defaultContent();
+		
+		
+		driver.quit();
+		
 	}
 }
+
+
+
 
 
 
