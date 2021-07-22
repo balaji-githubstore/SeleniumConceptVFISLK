@@ -18,13 +18,27 @@ public class WebElements {
 //		driver.get("http://demo.openemr.io/b/openemr/interface/login/login.php?site=default");
 		driver.get("https://www.google.com/");
 		
-		List<WebElement> elements= driver.findElements(By.xpath("//a[text()='Gmail']"));
+		
+//		WebElement ele= driver.findElement(By.linkText("Gmail"));
+//		String href = ele.getAttribute("href");
+//		String text=ele.getText();
+		
+//		System.out.println(href);
+//		System.out.println(text);
+		
+		List<WebElement> elements= driver.findElements(By.xpath("//a"));
 		int linkCount=elements.size();
-		
-		 WebElement ele0= elements.get(0);
-		 ele0.click();
-		
-		
 		System.out.println(linkCount);
+		
+		
+		
+		WebElement ele0 = elements.get(24);
+		
+		String href = ele0.getAttribute("href");
+		String text=ele0.getText();	
+		System.out.println(href);
+		System.out.println(text);
+		
+		
 	}
 }

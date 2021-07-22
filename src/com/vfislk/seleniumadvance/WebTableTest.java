@@ -1,5 +1,6 @@
 package com.vfislk.seleniumadvance;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -10,6 +11,8 @@ public class WebTableTest {
 
 	public static void main(String[] args) {
 		
+//		System.out.println(LocalDateTime.now().toLocalDate());
+		
 		WebDriver driver=new ChromeDriver();	
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -17,6 +20,8 @@ public class WebTableTest {
 		driver.get("https://datatables.net/extensions/select/examples/initialisation/checkbox.html");
 
 		boolean pageCheck=false;
+		
+		
 		
 		for(int p=1;p<=6;p++)
 		{
