@@ -15,16 +15,25 @@ public class WebTableTest {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 		driver.get("https://datatables.net/extensions/select/examples/initialisation/checkbox.html");
-		String name=driver.findElement(By.xpath("//table[@id='example']/tbody/tr[i]/td[2]")).getText();
-		System.out.println(name);
+
+		int rowCount=driver.findElements(By.xpath("//table[@id='example']/tbody/tr")).size();
+		System.out.println(rowCount);
 		
-		for(int i=1;i<=10;i++)
+		
+		for(int i=1;i<=rowCount;i++)
 		{
-			System.out.println("i value "+i+" is printed");
-			System.out.println("//table[@id='example']/tbody/tr["+i+"]/td[2]");
+			String name=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[2]")).getText();
+			System.out.println(name);	
+			
+			if(name.equals("Brenden Wagner"))
+			{
+				driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[1]")).click();
+				String sal=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[6]")).getText();
+				System.out.println(sal);	
+				break;
+			}
 		}
 	}
-
 }
 
 
