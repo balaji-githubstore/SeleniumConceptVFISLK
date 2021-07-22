@@ -15,15 +15,14 @@ public class WebTableTest {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 		driver.get("https://datatables.net/extensions/select/examples/initialisation/checkbox.html");
+		String name=driver.findElement(By.xpath("//table[@id='example']/tbody/tr[i]/td[2]")).getText();
+		System.out.println(name);
 		
-		
-		String name1=driver.findElement(By.xpath("//table[@id='example']/tbody/tr[1]/td[2]")).getText();
-		System.out.println(name1);
-		
-		String name2=driver.findElement(By.xpath("//table[@id='example']/tbody/tr[2]/td[2]")).getText();
-		System.out.println(name2);
-		
-		
+		for(int i=1;i<=10;i++)
+		{
+			System.out.println("i value "+i+" is printed");
+			System.out.println("//table[@id='example']/tbody/tr["+i+"]/td[2]");
+		}
 	}
 
 }
