@@ -18,6 +18,8 @@ public class SignupTest {
 		
 		driver.get("https://www.gotomeeting.com/en-in");
 		
+		String text=driver.getPageSource();
+		
 		driver.findElement(By.id("truste-consent-button")).click();
 		
 		driver.findElement(By.linkText("Start for Free")).click();
